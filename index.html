@@ -29,5 +29,12 @@
 		<!-- RKG -->
 		<script src="filetypes/rkg.js"></script>
 		<script src="filetypes/rkg_identifiers.js"></script>
+
+		<script>
+			var params = (new URL(document.location)).searchParams;
+			if (params.has("f")) {
+				fileType.value = params.get("f");
+			}
+		</script>
 	</body>
 </html>
