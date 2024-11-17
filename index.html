@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<link rel="stylesheet" href="style.css" />
+		<title>File Info</title>
+    </head>
+	<body>
+		<div class="flexcontainer">
+			<div>
+				<label for="fileType">File Type:</label>
+				<select name="fileType" id="fileType"></select>
+			</div>
+			<div style="height: 20px"></div>
+			<input type="file" id="fileInput" />
+			<p id="errorP" hidden></p>
+
+			<hr />
+
+			<div id="options" hidden></div>
+			<table id="table" hidden>
+				<tbody id="tbody"></tbody>
+			</table>
+		</div>
+
+		<script src="common.js"></script>
+		<!-- DTM -->
+		<script src="filetypes/dtm.js"></script>
+		<!-- RKG -->
+		<script src="filetypes/rkg.js"></script>
+		<script src="filetypes/rkg_identifiers.js"></script>
+	</body>
+</html>
