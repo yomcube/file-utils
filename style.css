@@ -1,0 +1,53 @@
+/* Elements */
+* {
+	color: white;
+	font-family: "Calibri", sans-serif;
+}
+
+body {
+	background-color: #363b56;
+}
+
+hr {
+	width: 250px;
+}
+
+table, td, th {
+	border: 1px solid lightgray;
+	border-collapse: collapse;
+	padding: 4px;
+}
+
+select {
+	background-color: #30344c;
+	border-style: inset;
+	border-color: #ccd3fc;
+	border-radius: 8px;
+}
+
+/* Classes */
+.flexcontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.code {
+	font-family: monospace;
+}
+
+.tooltip {
+	text-decoration: underline dotted;
+}
+
+/* https://stackoverflow.com/a/77796790 */
+[data-tooltip]:hover::after {
+  display: block;
+  position: absolute;
+  content: attr(data-tooltip);
+  border: 1px solid black;
+  background: #111;
+  padding: .25em;
+  font-weight: normal;
+}
