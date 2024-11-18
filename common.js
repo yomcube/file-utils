@@ -72,21 +72,38 @@ class Stream {
 		this.isLittleEndian = le;
 	}
 
+	#autoEndian(e) {
+		if (e == undefined) return this.isLittleEndian;
+		return e;
+	}
+
+	/* Common stream functions */
+	skip(n) {
+		return this.idx += n;
+	}
+	jump(n) {
+		return this.idx = n;
+	}
+	get index() {
+		return this.idx;
+	}
+
+	/* Read functions */
 	read_u8() {
 		return this.bytes[this.idx++];
 	}
-	read_u16() {
-		let tmp = this.dataViewBytes.getUint16(this.idx, this.isLittleEndian);
+	read_u16(e) {
+		let tmp = this.dataViewBytes.getUint16(this.idx, this.#autoEndian(e));
 		this.idx += 2;
 		return tmp;
 	}
-	read_u32() {
-		let tmp = this.dataViewBytes.getUint32(this.idx, this.isLittleEndian);
+	read_u32(e) {
+		let tmp = this.dataViewBytes.getUint32(this.idx, this.#autoEndian(e));
 		this.idx += 4;
 		return tmp;
 	}
-	read_u64_bigint() {
-		let tmp = this.dataViewBytes.getBigUint64(this.idx, this.isLittleEndian);
+	read_u64_bigint(e) {
+		let tmp = this.dataViewBytes.getBigUint64(this.idx, this.#autoEndian(e));
 		this.idx += 8;
 		return tmp;
 	}
@@ -99,15 +116,6 @@ class Stream {
 		let tmp = this.bytes.slice(this.idx, this.idx + length);
 		this.idx += length;
 		return tmp;
-	}
-	skip(n) {
-		return this.idx += n;
-	}
-	jump(n) {
-		return this.idx = n;
-	}
-	get index() {
-		return this.idx;
 	}
 }
 
