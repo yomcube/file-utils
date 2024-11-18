@@ -115,7 +115,7 @@ File_RKG.s_instance.identifiers = {
 
 	controllers: {
 		0: "Wii Wheel",
-		1: "Wiimote Nunchuck",
+		1: "Wiimote + Nunchuck",
 		2: "Classic",
 		3: "GameCube",
 	},
