@@ -1,3 +1,5 @@
+// https://wiki.tockdom.com/wiki/List_of_Identifiers
+
 File_RKG.s_instance.identifiers = {
 	tracks: {
 		0x08: "Luigi Circuit",

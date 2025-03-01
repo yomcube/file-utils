@@ -93,18 +93,6 @@ class File_DTM extends BaseFile {
 		/*0xED-0xF4*/ this.F.tickCount = this.stream.read_u64_bigint();
 	}
 
-	handleFile() {
-		var file = fileInput.files[0];
-		var headerBlob = file.slice(0, 0x100);
-
-		const reader = new FileReader();
-		reader.onload = function() {
-			File_DTM.s_instance.reader_load(this.result);
-		};
-			
-		reader.readAsArrayBuffer(headerBlob);
-	}
-
 	reader_load(res) {
 		var headerBuffer = res;
 		this.stream = new Stream(headerBuffer, true);
@@ -198,4 +186,4 @@ class File_DTM extends BaseFile {
 	}
 }
 
-addFileHandler(File_DTM.s_instance);
+addFileHandler(File_DTM.s_instance, 0, 0x100);
