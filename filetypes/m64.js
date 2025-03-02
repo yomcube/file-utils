@@ -55,7 +55,7 @@ class File_M64 extends BaseFile {
 		/*0x01E*/ this.stream.skip(2);
 		/*0x020*/ this.F.controllerFlags = this.stream.read_u32();
 		/*0x024*/ this.F.extendedData = new this.ExtData(
-			this.stream.read_u32(false),
+			this.stream.read_bytes(4),
 			this.stream.read_u32(false),
 			this.stream.read_u32(false),
 			this.stream.read_bytes(20)
