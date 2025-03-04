@@ -1,7 +1,7 @@
 // https://tasvideos.org/EmulatorResources/Mupen/M64
 class File_M64 extends BaseFile {
 	static s_instance = new File_M64();
-	name = "M64";
+	displayName = "M64";
 	isLittleEndian = true;
 
 	ExtData = class {
@@ -42,35 +42,35 @@ class File_M64 extends BaseFile {
 		static /*String[256]*/ description;
 	};
 
-	initFields() {
-		/*0x008*/ this.F.uid = this.stream.read_u32();
-		/*0x00C*/ this.F.frameCount = this.stream.read_u32();
-		/*0x010*/ this.F.rerecordCount = this.stream.read_u32();
-		/*0x014*/ this.F.visPS = this.stream.read_u8();
-		/*0x015*/ this.F.numOfControllers = this.stream.read_u8();
-		/*0x016*/ this.F.extendedVersion = this.stream.read_u8();
-		/*0x017*/ this.F.extendedFlags = this.stream.read_u8();
-		/*0x018*/ this.F.inputSamples = this.stream.read_u32();
-		/*0x01C*/ this.F.movieStartType = this.stream.read_u16();
-		/*0x01E*/ this.stream.skip(2);
-		/*0x020*/ this.F.controllerFlags = this.stream.read_u32();
+	initFields(/*Stream*/ stream) {
+		/*0x008*/ this.F.uid = stream.read_u32();
+		/*0x00C*/ this.F.frameCount = stream.read_u32();
+		/*0x010*/ this.F.rerecordCount = stream.read_u32();
+		/*0x014*/ this.F.visPS = stream.read_u8();
+		/*0x015*/ this.F.numOfControllers = stream.read_u8();
+		/*0x016*/ this.F.extendedVersion = stream.read_u8();
+		/*0x017*/ this.F.extendedFlags = stream.read_u8();
+		/*0x018*/ this.F.inputSamples = stream.read_u32();
+		/*0x01C*/ this.F.movieStartType = stream.read_u16();
+		/*0x01E*/ stream.skip(2);
+		/*0x020*/ this.F.controllerFlags = stream.read_u32();
 		/*0x024*/ this.F.extendedData = new this.ExtData(
-			this.stream.read_bytes(4),
-			this.stream.read_u32(false),
-			this.stream.read_u32(false),
-			this.stream.read_bytes(20)
+			stream.read_bytes(4),
+			stream.read_u32(false),
+			stream.read_u32(false),
+			stream.read_bytes(20)
 		);
-		/*0x044*/ this.stream.skip(128);
-		/*0x0C4*/ this.F.internalRomName = this.stream.read_string(32);
-		/*0x0E4*/ this.F.crc32 = this.stream.read_u32(false);
-		/*0x0E8*/ this.F.countryCode = this.stream.read_u16(false);
-		/*0x0EA*/ this.stream.skip(56);
-		/*0x122*/ this.F.videoPlugin = this.stream.read_string(64);
-		/*0x162*/ this.F.soundPlugin = this.stream.read_string(64);
-		/*0x1A2*/ this.F.inputPlugin = this.stream.read_string(64);
-		/*0x1E2*/ this.F.rspPlugin = this.stream.read_string(64);
-		/*0x222*/ this.F.author = this.stream.read_string(222);
-		/*0x300*/ this.F.description = this.stream.read_string(256);
+		/*0x044*/ stream.skip(128);
+		/*0x0C4*/ this.F.internalRomName = stream.read_string(32);
+		/*0x0E4*/ this.F.crc32 = stream.read_u32(false);
+		/*0x0E8*/ this.F.countryCode = stream.read_u16(false);
+		/*0x0EA*/ stream.skip(56);
+		/*0x122*/ this.F.videoPlugin = stream.read_string(64);
+		/*0x162*/ this.F.soundPlugin = stream.read_string(64);
+		/*0x1A2*/ this.F.inputPlugin = stream.read_string(64);
+		/*0x1E2*/ this.F.rspPlugin = stream.read_string(64);
+		/*0x222*/ this.F.author = stream.read_string(222);
+		/*0x300*/ this.F.description = stream.read_string(256);
 	}
 
 	reader_load(res) {
@@ -92,7 +92,7 @@ class File_M64 extends BaseFile {
 		tbody.innerHTML = "";
 		errorP.innerHTML = "";
 
-		this.initFields();
+		this.initFields(this.stream);
 
 		var html = "";
 

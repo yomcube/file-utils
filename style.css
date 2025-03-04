@@ -43,11 +43,11 @@ select {
 
 /* https://stackoverflow.com/a/77796790 */
 [data-tooltip]:hover::after {
-  display: block;
-  position: absolute;
-  content: attr(data-tooltip);
-  border: 1px solid black;
-  background: #111;
-  padding: .25em;
-  font-weight: normal;
+	display: block;
+	position: absolute;
+	content: attr(data-tooltip);
+	border: 1px solid black;
+	background: #111;
+	padding: .25em;
+	font-weight: normal;
 }
