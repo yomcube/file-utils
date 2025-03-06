@@ -11,3 +11,5 @@
 |:--|:--|:--|
 |GHT|Mario Kart Double Dash!! Time Trials ghost data|[mkdd.org](https://mkdd.org/wiki/GHT_%28File_Format%29)|
 |BK2|BizHawk TAS replay|[tasvideos.org](https://tasvideos.org/Bizhawk/BK2Format)|
+|SMV|Snes9x TAS replay|[tasvideos.org](https://tasvideos.org/EmulatorResources/Snes9x/SMV)|
+|VBM|Visual Boy Advance TAS replay|[tasvideos.org](https://tasvideos.org/EmulatorResources/VBA/VBM)|
