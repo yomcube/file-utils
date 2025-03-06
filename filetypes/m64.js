@@ -97,7 +97,7 @@ class File_M64 extends BaseFile {
 		var html = "";
 
 		html += row("Version", this.F.version);
-		html += row("UID", codespan('0x' + this.F.uid.toString(16).padStart(8, '0')));
+		html += row("UID", hexspan(this.F.uid, 8));
 		html += row("Frame Count", this.F.frameCount);
 		html += row("Rerecord Count", this.F.rerecordCount);
 		html += row("VIs per second", this.F.visPS);
@@ -170,8 +170,8 @@ Reserved: ${arrayToHex(this.F.extendedData.reserved)}`
 		)
 		
 		html += row("Internal ROM Name", this.F.internalRomName);
-		html += row("CRC32 of ROM", codespan('0x' + this.F.crc32.toString(16).padStart(8, '0')));
-		html += row("Country code of ROM", codespan('0x' + this.F.countryCode.toString(16).padStart(4, '0')));
+		html += row("CRC32 of ROM", hexspan(this.F.crc32, 8));
+		html += row("Country code of ROM", hexspan(this.F.countryCode, 4));
 		html += row("Video Plugin", this.F.videoPlugin);
 		html += row("Audio Plugin", this.F.soundPlugin);
 		html += row("Input Plugin", this.F.inputPlugin);

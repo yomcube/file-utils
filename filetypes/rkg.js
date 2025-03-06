@@ -130,11 +130,8 @@ class File_RKG extends BaseFile {
 			"Country",
 			`${s.countries[this.F.countryCode]} (${this.F.countryCode})`
 		);
-		html += row("State Code", codespan('0x' + u8ToHex(this.F.stateCode)));
-		html += row(
-			"Location Code",
-			codespan('0x' + this.F.locationCode.toString(16).padStart(4, "0"))
-		);
+		html += row("State Code", hexspan(this.F.stateCode, 2));
+		html += row("Location Code", hexspan(this.F.locationCode, 4));
 				
 		tbody.innerHTML = html;
 	}

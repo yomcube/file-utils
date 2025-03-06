@@ -139,7 +139,10 @@ class File_DTM extends BaseFile {
 		html += row("MD5 Hash", codespan(arrayToHex(this.F.md5)));
 
 		var date = new Date((Number)(this.F.startTime * 1000n));
-		html += row("Start Time", `${date.toLocaleDateString()} ${date.toLocaleTimeString()} (${codespan(this.F.startTime)})`);
+		html += row(
+			"Start Time", 
+			`${date.toLocaleDateString()} ${date.toLocaleTimeString()} (${codespan(this.F.startTime)})`
+		);
 		
 		html += row("Saved Config Valid", yesno(this.F.savedConfigValid));
 		html += row("Idle Skipping", endis(this.F.idleSkipping));
@@ -173,12 +176,12 @@ class File_DTM extends BaseFile {
 		var tt = "This setting only applies to Wii games that support both 50 Hz and 60 Hz.";
 		html += row(tooltip("PAL60", tt), endis(this.F.pal60));
 		
-		html += row("Language", codespan("0x" + this.F.language.toString(16).padStart(2, "0")));
+		html += row("Language", hexspan(this.F.language, 2));
 		html += row("JIT Branch Following", endis(this.F.jitBranchFollowing));
 		html += row("Name of Second Disc ISO", this.F.secondDiscIso);
 		html += row("Dolphin Git Revision", codespan(arrayToHex(this.F.dolphinGitRevision)));
-		html += row("DSP IROM Hash", codespan(this.F.dspIROMHash.toString(16).padStart(8, '0')));
-		html += row("DSP COEF Hash", codespan(this.F.dspCOEFHash.toString(16).padStart(8, '0')));
+		html += row("DSP IROM Hash", hexspan(this.F.dspIROMHash, 8));
+		html += row("DSP COEF Hash", hexspan(this.F.dspCOEFHash, 8));
 		
 		html += row("Tick Count", this.F.tickCount);
 
