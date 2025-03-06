@@ -9,17 +9,6 @@ const table     = document.getElementById("table");
 const tbody     = document.getElementById("tbody");
 
 
-/******************************/
-/****** Common Variables ******/
-/******************************/
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView
-const platform_littleEndian = (() => {
-	const buffer = new ArrayBuffer(2);
-	new DataView(buffer).setInt16(0, 256, true /* littleEndian */);
-	// Int16Array uses the platform's endianness.
-	return new Int16Array(buffer)[0] === 256;
-})();
-
 const utf8decoder = new TextDecoder();
 
 
@@ -51,6 +40,9 @@ function row(p, v) {
 }
 function codespan(s) {
 	return `<span class="code">${s}</span>`;
+}
+function hexspan(num, targetLength) {
+	return codespan("0x" + num.toString(16).padStart(targetLength, '0'));
 }
 function tooltip(text, tttext) {
 	return `<span class="tooltip" data-tooltip="${tttext}">${text}</span>`;
@@ -154,28 +146,31 @@ idx = ${this.idx}; l = ${l}; length = ${this.length}`);
 }
 
 class BaseFile {
-	/*String*/ name;
-	/*Stream*/ stream;
+	/*String*/   displayName;
+	/*Stream*/   stream;
+	/*String[]*/ get strings() {
+		return strings[name];
+	}
 }
 
 {
-	var classes = {};
+	let classes = {};
 	function addFileHandler(instance, slicestart, sliceend) {
-		let name = instance.name;
-		classes[name] = {
+		let dn = instance.displayName
+		classes[dn] = {
 			instance: instance,
 			slicestart: slicestart,
 			sliceend: sliceend
 		};
 
 		let opt = document.createElement('option');
-		opt.value = name;
-		opt.innerText = name;
+		opt.value = dn;
+		opt.innerText = dn;
 		fileType.appendChild(opt);
 	}
 	
 	function handleFile(obj) {
-		var file = fileInput.files[0];
+		let file = fileInput.files[0];
 
 		if (obj.slicestart > file.length) {
 			throw new Error("Slice start is greater than file length!");
@@ -184,7 +179,7 @@ class BaseFile {
 			throw new Error("Slice end is greater than file length!");
 		}
 
-		var blob = file.slice(obj.slicestart, obj.sliceend);
+		let blob = file.slice(obj.slicestart, obj.sliceend);
 
 		const reader = new FileReader();
 		reader.onload = function() {
@@ -198,8 +193,10 @@ class BaseFile {
 		try {
 			handleFile(classes[fileType.value]);
 		} catch (ex) {
-			if (ex instanceof TypeError) console.error(`Could not find handlers['${fileType.value}']`);
-			else throw ex;
+			if (ex instanceof TypeError)
+				console.error(`Could not find handlers['${fileType.value}']`);
+			else
+				throw ex;
 		}
 	}
 	

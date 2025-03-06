@@ -1,7 +1,7 @@
 //https://tasvideos.org/EmulatorResources/Dolphin/DTM
 class File_DTM extends BaseFile {
 	static s_instance = new File_DTM();
-	name = "DTM";
+	displayName = "DTM";
 
 	// Fields
 	F = class {
@@ -47,50 +47,50 @@ class File_DTM extends BaseFile {
 		/*u64*/    tickCount;
 	}
 
-	initFields() {
-		/*0x04-0x09*/ this.F.gameId = this.stream.read_string(6);
-		/*0x0A     */ this.F.isWii = !!this.stream.read_u8();
-		/*0x0B     */ this.F.controllers = this.stream.read_u8();
-		/*0x0C     */ this.F.fromSavestate = !!this.stream.read_u8();
-		/*0x0D-0x14*/ this.F.viCount = this.stream.read_u64_bigint();
-		/*0x15-0x1C*/ this.F.inputCount = this.stream.read_u64_bigint();
-		/*0x1D-0x24*/ this.F.lagCount = this.stream.read_u64_bigint();
-		/*0x25-0x2C*/ this.stream.skip(8);
-		/*0x2D-0x30*/ this.F.rerecordCount = this.stream.read_u32();
-		/*0x31-0x50*/ this.F.author = this.stream.read_string(32);
-		/*0x51-0x60*/ this.F.videoBackend = this.stream.read_string(16);
-		/*0x61-0x70*/ this.F.audioEmulator = this.stream.read_string(16);
-		/*0x71-0x80*/ this.F.md5 = this.stream.read_bytes(16);
-		/*0x81-0x88*/ this.F.startTime = this.stream.read_u64_bigint();
-		/*0x89     */ this.F.savedConfigValid = !!this.stream.read_u8();
-		/*0x8A     */ this.F.idleSkipping = !!this.stream.read_u8();
-		/*0x8B     */ this.F.dualCore = !!this.stream.read_u8();
-		/*0x8C     */ this.F.progressiveScan = !!this.stream.read_u8();
-		/*0x8D     */ this.F.dspHLE = !!this.stream.read_u8();
-		/*0x8E     */ this.F.fastDiscSpeed = !!this.stream.read_u8();
-		/*0x8F     */ this.F.cpuCore = this.stream.read_u8();
-		/*0x90     */ this.F.efbAccess = !!this.stream.read_u8();
-		/*0x91     */ this.F.efbCopy = !!this.stream.read_u8();
-		/*0x92     */ this.F.efbCopyToTexture = !!this.stream.read_u8();
-		/*0x93     */ this.F.efbCopyCache = !!this.stream.read_u8();
-		/*0x94     */ this.F.emulateFormatChanges = !!this.stream.read_u8();
-		/*0x95     */ this.F.xfb = !!this.stream.read_u8();
-		/*0x96     */ this.F.xfbReal = !!this.stream.read_u8();
-		/*0x97     */ this.F.memcardsPresent = this.stream.read_u8();
-		/*0x98     */ this.F.memcardBlank = !!this.stream.read_u8();
-		/*0x99     */ this.F.bongosPlugged = this.stream.read_u8();
-		/*0x9A     */ this.F.syncGPUThread = !!this.stream.read_u8();
-		/*0x9B     */ this.F.inNetplay = !!this.stream.read_u8();
-		/*0x9C     */ this.F.pal60 = !!this.stream.read_u8();
-		/*0x9D     */ this.F.language = this.stream.read_u8();
-		/*0x9E     */ this.stream.skip(1);
-		/*0x9F     */ this.F.jitBranchFollowing = !!this.stream.read_u8();
-		/*0xA0-0xA8*/ this.stream.skip(9);
-		/*0xA9-0xD0*/ this.F.secondDiscIso = this.stream.read_string(40);
-		/*0xD1-0xE4*/ this.F.dolphinGitRevision = this.stream.read_bytes(20);
-		/*0xE5-0xE8*/ this.F.dspIROMHash = this.stream.read_u32();
-		/*0xE9-0xEC*/ this.F.dspCOEFHash = this.stream.read_u32();
-		/*0xED-0xF4*/ this.F.tickCount = this.stream.read_u64_bigint();
+	initFields(/*Stream*/ stream) {
+		/*0x04-0x09*/ this.F.gameId = stream.read_string(6);
+		/*0x0A     */ this.F.isWii = !!stream.read_u8();
+		/*0x0B     */ this.F.controllers = stream.read_u8();
+		/*0x0C     */ this.F.fromSavestate = !!stream.read_u8();
+		/*0x0D-0x14*/ this.F.viCount = stream.read_u64_bigint();
+		/*0x15-0x1C*/ this.F.inputCount = stream.read_u64_bigint();
+		/*0x1D-0x24*/ this.F.lagCount = stream.read_u64_bigint();
+		/*0x25-0x2C*/ stream.skip(8);
+		/*0x2D-0x30*/ this.F.rerecordCount = stream.read_u32();
+		/*0x31-0x50*/ this.F.author = stream.read_string(32);
+		/*0x51-0x60*/ this.F.videoBackend = stream.read_string(16);
+		/*0x61-0x70*/ this.F.audioEmulator = stream.read_string(16);
+		/*0x71-0x80*/ this.F.md5 = stream.read_bytes(16);
+		/*0x81-0x88*/ this.F.startTime = stream.read_u64_bigint();
+		/*0x89     */ this.F.savedConfigValid = !!stream.read_u8();
+		/*0x8A     */ this.F.idleSkipping = !!stream.read_u8();
+		/*0x8B     */ this.F.dualCore = !!stream.read_u8();
+		/*0x8C     */ this.F.progressiveScan = !!stream.read_u8();
+		/*0x8D     */ this.F.dspHLE = !!stream.read_u8();
+		/*0x8E     */ this.F.fastDiscSpeed = !!stream.read_u8();
+		/*0x8F     */ this.F.cpuCore = stream.read_u8();
+		/*0x90     */ this.F.efbAccess = !!stream.read_u8();
+		/*0x91     */ this.F.efbCopy = !!stream.read_u8();
+		/*0x92     */ this.F.efbCopyToTexture = !!stream.read_u8();
+		/*0x93     */ this.F.efbCopyCache = !!stream.read_u8();
+		/*0x94     */ this.F.emulateFormatChanges = !!stream.read_u8();
+		/*0x95     */ this.F.xfb = !!stream.read_u8();
+		/*0x96     */ this.F.xfbReal = !!stream.read_u8();
+		/*0x97     */ this.F.memcardsPresent = stream.read_u8();
+		/*0x98     */ this.F.memcardBlank = !!stream.read_u8();
+		/*0x99     */ this.F.bongosPlugged = stream.read_u8();
+		/*0x9A     */ this.F.syncGPUThread = !!stream.read_u8();
+		/*0x9B     */ this.F.inNetplay = !!stream.read_u8();
+		/*0x9C     */ this.F.pal60 = !!stream.read_u8();
+		/*0x9D     */ this.F.language = stream.read_u8();
+		/*0x9E     */ stream.skip(1);
+		/*0x9F     */ this.F.jitBranchFollowing = !!stream.read_u8();
+		/*0xA0-0xA8*/ stream.skip(9);
+		/*0xA9-0xD0*/ this.F.secondDiscIso = stream.read_string(40);
+		/*0xD1-0xE4*/ this.F.dolphinGitRevision = stream.read_bytes(20);
+		/*0xE5-0xE8*/ this.F.dspIROMHash = stream.read_u32();
+		/*0xE9-0xEC*/ this.F.dspCOEFHash = stream.read_u32();
+		/*0xED-0xF4*/ this.F.tickCount = stream.read_u64_bigint();
 	}
 
 	reader_load(res) {
@@ -111,7 +111,7 @@ class File_DTM extends BaseFile {
 		tbody.innerHTML = "";
 		errorP.innerHTML = "";
 
-		this.initFields();
+		this.initFields(this.stream);
 
 		var html = "";
 
@@ -139,7 +139,10 @@ class File_DTM extends BaseFile {
 		html += row("MD5 Hash", codespan(arrayToHex(this.F.md5)));
 
 		var date = new Date((Number)(this.F.startTime * 1000n));
-		html += row("Start Time", `${date.toLocaleDateString()} ${date.toLocaleTimeString()} (${codespan(this.F.startTime)})`);
+		html += row(
+			"Start Time", 
+			`${date.toLocaleDateString()} ${date.toLocaleTimeString()} (${codespan(this.F.startTime)})`
+		);
 		
 		html += row("Saved Config Valid", yesno(this.F.savedConfigValid));
 		html += row("Idle Skipping", endis(this.F.idleSkipping));
@@ -173,12 +176,12 @@ class File_DTM extends BaseFile {
 		var tt = "This setting only applies to Wii games that support both 50 Hz and 60 Hz.";
 		html += row(tooltip("PAL60", tt), endis(this.F.pal60));
 		
-		html += row("Language", codespan("0x" + this.F.language.toString(16).padStart(2, "0")));
+		html += row("Language", hexspan(this.F.language, 2));
 		html += row("JIT Branch Following", endis(this.F.jitBranchFollowing));
 		html += row("Name of Second Disc ISO", this.F.secondDiscIso);
 		html += row("Dolphin Git Revision", codespan(arrayToHex(this.F.dolphinGitRevision)));
-		html += row("DSP IROM Hash", codespan(this.F.dspIROMHash.toString(16).padStart(8, '0')));
-		html += row("DSP COEF Hash", codespan(this.F.dspCOEFHash.toString(16).padStart(8, '0')));
+		html += row("DSP IROM Hash", hexspan(this.F.dspIROMHash, 8));
+		html += row("DSP COEF Hash", hexspan(this.F.dspCOEFHash, 8));
 		
 		html += row("Tick Count", this.F.tickCount);
 

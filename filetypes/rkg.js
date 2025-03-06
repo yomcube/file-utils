@@ -2,9 +2,7 @@
 // https://github.com/vabold/Kinoko/blob/main/source/game/system/GhostFile.hh
 class File_RKG extends BaseFile {
 	static s_instance = new File_RKG();
-	name = "RKG";
-	
-	identifiers; // rkg_identifiers.js
+	displayName = "RKG";
 
 	// Helper classes
 	RKGTime = class {
@@ -46,17 +44,16 @@ class File_RKG extends BaseFile {
 
 
 
-
 	// https://github.com/vabold/Kinoko/blob/main/source/game/system/GhostFile.cc
-	initFields() {
+	initFields(/*Stream*/ stream) {
 		// 0x04 - 0x07
-		var data = this.stream.read_u32();
+		var data = stream.read_u32();
 		this.F.raceTime = new this.RKGTime(data);
 		this.F.course = data >> 2 & 0x3F;
 
 		// 0x08 - 0x0B
-		data = this.stream.read_u32();
-		this.F.vehicle = data >> 0x1A;
+		data = stream.read_u32();
+		this.F.vehicle = data >>> 0x1A;
 		this.F.character = data >> 0x14 & 0x3F;
 		this.F.year = (data >> 0xD) & 0x7F;
 		this.F.month = (data >> 9) & 0xF;
@@ -64,25 +61,25 @@ class File_RKG extends BaseFile {
 		this.F.controller = data & 0xF;
 
 		 // 0x0C - 0x0F
-		data = this.stream.read_u32();
+		data = stream.read_u32();
 		this.F.compressed = (data >> 0x1B) & 1;
 		this.F.ghostType = data >> 0x12 & 0x7F;
 		this.F.isAutomatic = data >> 0x11 & 0x1;
 		this.F.inputSize = data & 0xFFFF;
 
 		// 0x10
-		this.F.lapCount = this.stream.read_u8();
+		this.F.lapCount = stream.read_u8();
 
 		// 0x11 - 0x1F
 		for (let i = 0; i < 5; i++) {
-			this.F.lapSplits[i] = new this.RKGTime(this.stream.read_u32());
-			this.stream.skip(-1);
+			this.F.lapSplits[i] = new this.RKGTime(stream.read_u32());
+			stream.skip(-1);
 		}
 
 		// 0x34 - 0x37
-		this.F.countryCode = this.stream.read_u8();
-		this.F.stateCode = this.stream.read_u8();
-		this.F.locationCode = this.stream.read_u16();
+		this.F.countryCode = stream.read_u8();
+		this.F.stateCode = stream.read_u8();
+		this.F.locationCode = stream.read_u16();
 	}
 
 	reader_load(res) {
@@ -103,18 +100,20 @@ class File_RKG extends BaseFile {
 		tbody.innerHTML = "";
 		errorP.innerHTML = "";
 
-		this.initFields();
+		this.initFields(this.stream);
 
 		var html = "";
 
+		var s = strings[this.displayName];
+
 		html += row("Finish Time", this.timeString(this.F.raceTime));
-		html += row("Course", this.identifiers.tracks[this.F.course]);
-		html += row("Vehicle", this.identifiers.vehicles[this.F.vehicle]);
-		html += row("Character", this.identifiers.characters[this.F.character]);
+		html += row("Course", s.tracks[this.F.course]);
+		html += row("Vehicle", s.vehicles[this.F.vehicle]);
+		html += row("Character", s.characters[this.F.character]);
 		html += row("Date", `${this.F.year + 2000}-${this.F.month}-${this.F.day}`);
-		html += row("Controller", this.identifiers.controllers[this.F.controller]);
+		html += row("Controller", s.controllers[this.F.controller]);
 		html += row("Compressed", yesno(this.F.compressed));
-		html += row("Ghost Type", this.identifiers.ghostTypes[this.F.ghostType]);
+		html += row("Ghost Type", s.ghostTypes[this.F.ghostType]);
 		html += row("Drift Type", this.F.isAutomatic ? "Automatic" : "Manual");
 		html += row(
 			tooltip("Input Length", "Measured when decompressed and without padding."),
@@ -129,13 +128,10 @@ class File_RKG extends BaseFile {
 		html += row("Lap Splits", lapsplittext);
 		html += row(
 			"Country",
-			`${this.identifiers.countries[this.F.countryCode]} (${this.F.countryCode})`
+			`${s.countries[this.F.countryCode]} (${this.F.countryCode})`
 		);
-		html += row("State Code", codespan('0x' + u8ToHex(this.F.stateCode)));
-		html += row(
-			"Location Code",
-			codespan('0x' + this.F.locationCode.toString(16).padStart(4, "0"))
-		);
+		html += row("State Code", hexspan(this.F.stateCode, 2));
+		html += row("Location Code", hexspan(this.F.locationCode, 4));
 				
 		tbody.innerHTML = html;
 	}
