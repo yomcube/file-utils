@@ -1,6 +1,5 @@
 //https://tasvideos.org/EmulatorResources/Dolphin/DTM
 class File_DTM extends BaseFile {
-	static s_instance = new File_DTM();
 	displayName = "DTM";
 
 	// Fields
@@ -189,4 +188,4 @@ class File_DTM extends BaseFile {
 	}
 }
 
-addFileHandler(File_DTM.s_instance, 0, 0x100);
+addFileHandler(new File_DTM(), 0, 0x100);

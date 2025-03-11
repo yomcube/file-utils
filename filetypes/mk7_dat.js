@@ -1,7 +1,6 @@
 // https://mk3ds.com/index.php?title=DAT_%28File_Format%29
 // https://github.com/Bsquo/MK7GhostReader/blob/main/mk7ghosts.py
 class File_MK7_DAT extends BaseFile {
-	static s_instance = new File_MK7_DAT();
 	displayName = "MK7 DAT";
 
 	// Helper classes
@@ -155,4 +154,4 @@ class File_MK7_DAT extends BaseFile {
 
 }
 
-addFileHandler(File_MK7_DAT.s_instance, 0, 0xC0);
+addFileHandler(new File_MK7_DAT(), 0, 0xC0);

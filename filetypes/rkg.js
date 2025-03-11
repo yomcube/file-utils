@@ -1,7 +1,6 @@
 // https://wiki.tockdom.com/wiki/RKG_(File_Format)
 // https://github.com/vabold/Kinoko/blob/main/source/game/system/GhostFile.hh
 class File_RKG extends BaseFile {
-	static s_instance = new File_RKG();
 	displayName = "RKG";
 
 	// Helper classes
@@ -138,4 +137,4 @@ class File_RKG extends BaseFile {
 
 }
 
-addFileHandler(File_RKG.s_instance, 0, 0x88);
+addFileHandler(new File_RKG(), 0, 0x88);

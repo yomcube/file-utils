@@ -1,6 +1,5 @@
 // https://mkdd.org/wiki/GHT_(File_Format)
 class File_GHT extends BaseFile {
-	static s_instance = new File_GHT();
 	name = "GHT";
 
 	F = class {
@@ -64,4 +63,4 @@ class File_GHT extends BaseFile {
 
 }
 
-//addFileHandler(File_GHT.s_instance, 0, 0x28);
+//addFileHandler(new File_GHT(), 0, 0x28);

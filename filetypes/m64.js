@@ -1,6 +1,5 @@
 // https://tasvideos.org/EmulatorResources/Mupen/M64
 class File_M64 extends BaseFile {
-	static s_instance = new File_M64();
 	displayName = "M64";
 	isLittleEndian = true;
 
@@ -182,4 +181,4 @@ Reserved: ${arrayToHex(this.F.extendedData.reserved)}`
 
 }
 
-addFileHandler(File_M64.s_instance, 0, 0x400);
+addFileHandler(new File_M64(), 0, 0x400);
