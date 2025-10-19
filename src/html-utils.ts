@@ -16,7 +16,45 @@ export class Table {
         this.element.appendChild(row);
     }
     clear() {
-        this.element.innerHTML = "";
+        this.element.replaceChildren();
+    }
+}
+
+export class Tabs {
+    element: HTMLDivElement;
+    name: string;
+    tabs: HTMLDivElement[] = [];
+
+    constructor(name: string, e?: HTMLDivElement) {
+        this.element = e == undefined ? document.createElement("div") : e;
+        this.element.classList.add("tab-container");
+        this.name = name;
+    }
+
+    createTab(label: string): HTMLDivElement {
+        let tab = document.createElement("div");
+        tab.classList.add("tab");
+
+        let input = document.createElement("input");
+        input.type = "radio";
+        input.name = this.name;
+        input.id = `${this.name}-${this.tabs.length}`;
+
+        let lbl = document.createElement("label");
+        lbl.htmlFor = input.id;
+        lbl.innerText = label;
+
+        let content = document.createElement("div");
+        content.classList.add("tab-content");
+
+        tab.append(input, lbl, content);
+
+        this.tabs.push(tab);
+        return content;
+    }
+
+    displayTabs(): void {
+        this.element.replaceChildren(...this.tabs);
     }
 }
 
