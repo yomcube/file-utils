@@ -1,81 +1,81 @@
-import { Endian } from "./stream.js"
+import { Stream, Endian } from "./stream.js"
 
-export type BaseType = (stream) => object;
+export type BaseType = (s: Stream) => any;
 
 export function u8() {
-    return ((stream) => {
-        return stream.read_u8();
+    return ((s: Stream) => {
+        return s.read_u8();
     });
 }
 export function s8() {
-    return ((stream) => {
-        return stream.read_s8();
+    return ((s: Stream) => {
+        return s.read_s8();
     });
 }
 export function u16(e?: Endian) {
-    return ((stream) => {
-        return stream.read_u16(e);
+    return ((s: Stream) => {
+        return s.read_u16(e);
     });
 }
 export function s16(e?: Endian) {
-    return ((stream) => {
-        return stream.read_s16(e);
+    return ((s: Stream) => {
+        return s.read_s16(e);
     });
 }
 export function u32(e?: Endian) {
-    return ((stream) => {
-        return stream.read_u32(e);
+    return ((s: Stream) => {
+        return s.read_u32(e);
     });
 }
 export function s32(e?: Endian) {
-    return ((stream) => {
-        return stream.read_s32(e);
+    return ((s: Stream) => {
+        return s.read_s32(e);
     });
 }
 export function u64(e?: Endian) {
-    return ((stream) => {
-        return stream.read_u64_bigint(e);
+    return ((s: Stream) => {
+        return s.read_u64_bigint(e);
     });
 }
 export function s64(e?: Endian) {
-    return ((stream) => {
-        return stream.read_s64_bigint(e);
+    return ((s: Stream) => {
+        return s.read_s64_bigint(e);
     });
 }
 
 export function f32(e?: Endian) {
-    return ((stream) => {
-        return stream.read_f32(e);
+    return ((s: Stream) => {
+        return s.read_f32(e);
     });
 }
 export function f64(e?: Endian) {
-    return ((stream) => {
-        return stream.read_f32(e);
+    return ((s: Stream) => {
+        return s.read_f32(e);
     });
 }
 
 export function str(length: number) {
-    return ((stream) => {
-        return stream.read_string(length);
+    return ((s: Stream) => {
+        return s.read_string(length);
     });
 }
 export function byteArray(length: number) {
-    return ((stream) => {
-        return stream.read_bytes(length);
+    return ((s: Stream) => {
+        return s.read_bytes(length);
     });
 }
 
 export function bool() {
-    return ((stream) => {
-        return stream.read_u8() != 0;
+    return ((s: Stream) => {
+        return s.read_u8() != 0;
     });
 }
 
 export function array(type: BaseType, length: number) {
-    return ((stream) => {
+    return ((s: Stream) => {
         let tmp = [];
         for (let i = 0; i < length; i++) {
-            tmp.push(type(stream));
+            tmp.push(type(s));
         }
         return tmp;
     });

@@ -15,7 +15,7 @@ export class RKGHandler implements IFileHandler {
         });
     }
 
-    timeString(time) {
+    timeString(time: any): string {
 		return `${time.min}:${leftFillNum(time.sec, 2)}.${leftFillNum(time.mil, 3)}`;
 	}
     

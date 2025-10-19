@@ -6,7 +6,7 @@ import { Structure, Types } from "../structure.js";
 import { RKGTimeStructType } from "./rkg.js";
 
 export function RKPD() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             signature: Types.u32()(s),
             personalBestFlags: Types.u32()(s),
@@ -81,7 +81,7 @@ export function RKPD() {
     });
 }
 export function RKPDCup() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             unknownStringData: Types.byteArray(0x4C)(s),
             unknown0: Types.byteArray(3)(s),
@@ -94,7 +94,7 @@ export function RKPDCup() {
     });
 }
 export function RKPDTimeTrialLeaderboardEntry() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             mii: Types.byteArray(0x4A)(s),
             miiCRC: Types.u16()(s),
@@ -107,7 +107,7 @@ export function RKPDTimeTrialLeaderboardEntry() {
     });
 }
 export function RKPDCompetitionLeaderboardEntry() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             time: RKGTimeStructType()(s),
             vehicle: Types.u8()(s),
@@ -118,7 +118,7 @@ export function RKPDCompetitionLeaderboardEntry() {
     });
 }
 export function RKPDFriendBlockMain() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             unknown0: Types.u32()(s),
             pid: Types.u32()(s),
@@ -140,7 +140,7 @@ export function RKPDFriendBlockMain() {
     });
 }
 export function RKPDFriendBlockSecondary() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             unknown0: Types.u16()(s),
             unknown1: Types.u8()(s),
@@ -152,7 +152,7 @@ export function RKPDFriendBlockSecondary() {
 }
 
 export function RKGD() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             signature: Types.u32()(s),
             settings: Types.u32()(s),
@@ -166,7 +166,7 @@ export function RKGD() {
     });
 }
 export function RKGDCompetitionInfo() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             id: Types.u32()(s),
             worldwideRankings: RKGDCompetitionRankingData()(s),
@@ -175,7 +175,7 @@ export function RKGDCompetitionInfo() {
     });
 }
 export function RKGDCompetitionRankingData() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             miiMultiplier: Types.u32()(s),
             rankTimeLimit: Types.u32()(s),
@@ -193,7 +193,7 @@ export function RKGDCompetitionRankingData() {
     });
 }
 export function RKGDTimeTrialChampions() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             regionalChampion: RKGDTimeTrialChampionsEntry()(s),
             worldwideChampion: RKGDTimeTrialChampionsEntry()(s),
@@ -201,7 +201,7 @@ export function RKGDTimeTrialChampions() {
     });
 }
 export function RKGDTimeTrialChampionsEntry() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             finishTime: Types.u32()(s), // Probably RKGTime
             miiDataWithChecksum: Types.byteArray(0x4C)(s)
@@ -209,7 +209,7 @@ export function RKGDTimeTrialChampionsEntry() {
     });
 }
 export function RKGDCompetitionChampions() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             regionalChampion: RKGDCompetitionChampionsEntry()(s),
             worldwideChampion: RKGDCompetitionChampionsEntry()(s),
@@ -217,7 +217,7 @@ export function RKGDCompetitionChampions() {
     });
 }
 export function RKGDCompetitionChampionsEntry() {
-    return ((s) => {
+    return ((s: Stream) => {
         return {
             finishTime: Types.u32()(s), // Probably RKGTime
             unknown0: Types.u32()(s),

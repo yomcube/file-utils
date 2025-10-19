@@ -5,12 +5,12 @@ import { Stream, Endian } from "../stream.js";
 import { Structure, Types } from "../structure.js";
 
 export function ExtData() {
-    return ((stream) => {
+    return ((s: Stream) => {
         return {
-            specialAuthor: stream.read_u32(),
-            bruteforcing: stream.read_u32(),
-            rerecordingHighWord: stream.read_u32(),
-            reserved: stream.read_bytes(20)
+            specialAuthor: s.read_u32(),
+            bruteforcing: s.read_u32(),
+            rerecordingHighWord: s.read_u32(),
+            reserved: s.read_bytes(20)
         }
     });
 }

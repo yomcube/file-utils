@@ -1,16 +1,17 @@
 import { IFileHandler } from "../handler.js";
 import { KRKGFile } from "../filetypes/kinoko.js";
-import { Table, leftFillNum, numToHex, tooltip, yesno } from "../html-utils.js";
+import { Table, numToHex } from "../html-utils.js";
+import { Stream } from "../stream.js";
 
 const content = document.getElementById("content");
 
 type Vector3f = { x: number, y: number, z: number };
-function Vector3f_read(stream): Vector3f {
-    return { x: stream.read_f32(), y: stream.read_f32(), z: stream.read_f32() };
+function Vector3f_read(s: Stream): Vector3f {
+    return { x: s.read_f32(), y: s.read_f32(), z: s.read_f32() };
 }
 type Quatf = { v: Vector3f, w: number };
-function Quatf_read(stream): Quatf {
-    return { v: Vector3f_read(stream), w: stream.read_f32() };
+function Quatf_read(s: Stream): Quatf {
+    return { v: Vector3f_read(s), w: s.read_f32() };
 }
 
 export class KRKGHandler implements IFileHandler {
@@ -66,7 +67,7 @@ export class KRKGHandler implements IFileHandler {
 
         let frameTable = new Table();
         frameTable.element.id = "frameTable";
-        this.createFrameTable(0, framedata, frameTable.element);
+        this.createFrameTable("0", framedata, frameTable.element);
         
         let label = document.createElement("label");
         label.htmlFor = "frameInput";
@@ -96,7 +97,7 @@ export class KRKGHandler implements IFileHandler {
 
     V3f_toStr(v: Vector3f) { return `(${v.x}, ${v.y}, ${v.z})` }
     Qf_toStr(q: Quatf) { return `(${this.V3f_toStr(q.v)}, ${q.w})` }
-    createFrameTable(frame, data, e) {
+    createFrameTable(frame: string, data: {[index: string]: any}, e: HTMLTableElement) {
         let table = new Table(e);
         table.clear();
         table.addRow("pos", this.V3f_toStr(data[frame].pos));

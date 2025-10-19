@@ -22,9 +22,9 @@ export function RKGTime(data: Uint8Array | number) {
 }
 
 export function RKGTimeStructType() {
-    return ((stream) => {
-        console.log(stream.index);
-        return RKGTime(stream.read_bytes(3));
+    return ((s: Stream) => {
+        console.log(s.index);
+        return RKGTime(s.read_bytes(3));
     });
 }
 

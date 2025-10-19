@@ -15,7 +15,7 @@ export class MK7_DATHandler implements IFileHandler {
         });
     }
 
-    timeString(mil, sec, min) {
+    timeString(mil: number, sec: number, min: number): string {
         return `${min}:${leftFillNum(sec, 2)}.${leftFillNum(mil, 3)}`;
     }
     

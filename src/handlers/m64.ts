@@ -14,10 +14,6 @@ export class M64Handler implements IFileHandler {
             this.createTable();
         });
     }
-
-    timeString(time) {
-        return `${time.min}:${leftFillNum(time.sec, 2)}.${leftFillNum(time.mil, 3)}`;
-    }
     
     createTable() {
         const p: Record<string, any> = this.file.parsed;
