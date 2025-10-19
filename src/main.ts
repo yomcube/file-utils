@@ -19,6 +19,9 @@ addFileHandler(new RKGHandler());
 import { MK7_DATHandler } from "./handlers/mk7_dat.js";
 addFileHandler(new MK7_DATHandler());
 
+import { KRKGHandler } from "./handlers/kinoko.js";
+addFileHandler(new KRKGHandler());
+
 var params = (new URL(document.location.toString())).searchParams;
 if (params.has("f")) {
     fileType.value = params.get("f");

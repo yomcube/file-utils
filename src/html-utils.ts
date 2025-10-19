@@ -15,6 +15,9 @@ export class Table {
         row.appendChild(d);
         this.element.appendChild(row);
     }
+    clear() {
+        this.element.innerHTML = "";
+    }
 }
 
 export function yesno(b: boolean | number): string {
