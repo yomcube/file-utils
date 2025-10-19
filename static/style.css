@@ -1,27 +1,26 @@
 /* Elements */
 * {
-	color: white;
 	font-family: "Calibri", sans-serif;
 }
 
 body {
-	background-color: #363b56;
+	background-color: #202f4c;
 }
 
 hr {
-	width: 250px;
+	width: 15em;
 }
 
-table, td, th {
-	border: 1px solid lightgray;
-	border-collapse: collapse;
-	padding: 4px;
+th {
+	font-weight: normal;
+	text-align: left;
+}
+td, td * {
+	font-weight: lighter;
 }
 
 select {
-	background-color: #30344c;
 	border-style: inset;
-	border-color: #ccd3fc;
 	border-radius: 8px;
 }
 
@@ -33,21 +32,17 @@ select {
 	flex-direction: column;
 }
 
-.code {
-	font-family: monospace;
-}
-
 .tooltip {
 	text-decoration: underline dotted;
 }
-
 /* https://stackoverflow.com/a/77796790 */
 [data-tooltip]:hover::after {
 	display: block;
 	position: absolute;
 	content: attr(data-tooltip);
-	border: 1px solid black;
+	border: 2px solid black;
+	border-radius: .75em;
 	background: #111;
-	padding: .25em;
+	padding: 5px 10px;
 	font-weight: normal;
 }
