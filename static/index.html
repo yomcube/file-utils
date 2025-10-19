@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="github-markdown-dark.css" />
+		<style>
+			.markdown-body {
+				box-sizing: border-box;
+				min-width: 200px;
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 45px;
+			}
+
+			@media (max-width: 767px) {
+				.markdown-body {
+					padding: 15px;
+				}
+			}
+		</style>
+		<title>File Info</title>
+    </head>
+	<body class="markdown-body">
+		<div class="flexcontainer">
+			<div>
+				<label for="fileType">File Type:</label>
+				<select name="fileType" id="fileType"></select>
+			</div>
+			<div style="height: 20px"></div>
+			<input type="file" id="fileInput" />
+
+			<hr />
+
+			<div id="content"></div>
+		</div>
+
+		<script src="main.js" type="module"></script>
+	</body>
+</html>
