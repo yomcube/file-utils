@@ -5,17 +5,32 @@ export class Table {
         this.element = e == undefined ? document.createElement("table") : e;
     }
 
+    get style(): CSSStyleDeclaration {
+        return this.element.style;
+    }
+    set style(value: string) {
+        this.element.style = value;
+    }
+
     addRow(header: any, data: any): void {
         var row = document.createElement("tr");
         var h = document.createElement("th");
         var d = document.createElement("td");
         h.innerHTML = header;
         d.innerHTML = data;
-        row.appendChild(h);
-        row.appendChild(d);
+        row.append(h, d);
         this.element.appendChild(row);
     }
-    clear() {
+    addFullHeader(header: any): void {
+        var row = document.createElement("tr");
+        var h = document.createElement("th");
+        h.colSpan = 2;
+        h.innerHTML = header;
+        h.style.textAlign = "center";
+        row.appendChild(h);
+        this.element.appendChild(row);
+    }
+    clear(): void {
         this.element.replaceChildren();
     }
 }
@@ -23,6 +38,7 @@ export class Table {
 export class Tabs {
     element: HTMLDivElement;
     name: string;
+    anchors: HTMLAnchorElement[] = [];
     tabs: HTMLDivElement[] = [];
 
     constructor(name: string, e?: HTMLDivElement) {
@@ -31,29 +47,41 @@ export class Tabs {
         this.name = name;
     }
 
-    createTab(label: string): HTMLDivElement {
+    get style(): CSSStyleDeclaration {
+        return this.element.style;
+    }
+    set style(value: string) {
+        this.element.style = value;
+    }
+
+    createTab(label: string): [HTMLDivElement, HTMLAnchorElement, HTMLDivElement] {
+        let id = `${this.name}-${this.tabs.length}`;
+
         let tab = document.createElement("div");
+        tab.id = id;
         tab.classList.add("tab");
 
-        let input = document.createElement("input");
-        input.type = "radio";
-        input.name = this.name;
-        input.id = `${this.name}-${this.tabs.length}`;
+        let anchor = document.createElement("a");
+        anchor.href = `#${id}`;
+        anchor.innerText = label;
+        this.anchors.push(anchor);
 
-        let lbl = document.createElement("label");
-        lbl.htmlFor = input.id;
-        lbl.innerText = label;
+        let tab_body = document.createElement("div");
+        tab_body.classList.add("tab-body");
 
-        let content = document.createElement("div");
-        content.classList.add("tab-content");
-
-        tab.append(input, lbl, content);
-
+        tab.append(anchor, tab_body);
         this.tabs.push(tab);
-        return content;
+
+        return [tab, anchor, tab_body];
     }
 
     displayTabs(): void {
+        /*let div = document.createElement("div");
+        div.classList.add("tab-anchors");
+        for (const a of this.anchors) {
+            div.appendChild(a);
+        }
+        this.element.replaceChildren(div, ...this.tabs);*/
         this.element.replaceChildren(...this.tabs);
     }
 }

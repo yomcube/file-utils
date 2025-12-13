@@ -5,6 +5,7 @@
 
 body {
 	background-color: #202f4c;
+	width: 100%;
 }
 
 hr {
@@ -25,11 +26,12 @@ select {
 }
 
 /* Classes */
-.flexcontainer {
+.flex-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	flex-wrap: wrap;
 }
 
 .tooltip {
@@ -45,4 +47,55 @@ select {
 	background: #111;
 	padding: 5px 10px;
 	font-weight: normal;
+}
+
+/* https://www.w3.org/Style/Examples/007/target.en.html */
+.tab-container {
+	min-height: 7em;
+	position: relative;
+	line-height: 1;
+	z-index: 0;
+}
+.tab-container > .tab {
+	display: inline;
+}
+.tab-container > .tab > a {
+	color: white;
+	background-color: #0d1117;
+	padding: 0.3em 0.5em;
+	border: 0.1em solid #3d444d;
+	border-bottom: 0.1em solid #151b23;
+}
+.tab-container > .tab > a:hover {
+	text-decoration: none;
+}
+.tab-container > .tab:not(:target) > a {
+	border-bottom: #3d444d;
+	background-color: #0d1117;
+}
+.tab-container > .tab:not(:target) > a:hover {
+	background-color: #11161e;
+}
+.tab-container > .tab:target > a, :target .tab-default > a {
+	border-bottom: #151b23;
+	background-color: #151b23;
+}
+.tab-container > .tab > .tab-body {
+	background-color: #151b23;
+	z-index: -2;
+	left: 0; top: 1.3em;
+	bottom: 0; right: 0;
+	overflow: auto;
+	padding: 0.5em;
+	border: 0.1em outset #3d444d;
+}
+.tab-container > .tab:not(:target) > .tab-body {
+	position: absolute;
+}
+.tab-container > .tab:target > .tab-body, :target .tab-default > .tab-body {
+	position: absolute;
+	z-index: -1;
+}
+.tab-container :target {
+	outline: none;
 }

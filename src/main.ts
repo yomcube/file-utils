@@ -19,6 +19,9 @@ addFileHandler(new RKGHandler());
 import { MK7_DATHandler } from "./handlers/mk7_dat.js";
 addFileHandler(new MK7_DATHandler());
 
+/*import { RksysHandler } from "./handlers/rksys.js";
+addFileHandler(new RksysHandler());*/
+
 import { KRKGHandler } from "./handlers/kinoko.js";
 addFileHandler(new KRKGHandler());
 
