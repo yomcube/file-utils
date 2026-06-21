@@ -3,11 +3,11 @@ import { RKGFile, RKGTime } from "../filetypes/rkg.js";
 import { Table, leftFillNum, numToHex, tooltip, yesno } from "../html-utils.js";
 import { strings } from "../strings/rkg.js";
 
-const content = document.getElementById("content");
+const content: HTMLElement = document.getElementById("content") as HTMLElement;
 
 export class RKGHandler implements IFileHandler {
     displayName: string = "RKG";
-    file: RKGFile;
+    file: RKGFile = {} as RKGFile;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new RKGFile( new Uint8Array(buffer) );

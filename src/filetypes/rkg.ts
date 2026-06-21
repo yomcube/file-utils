@@ -22,7 +22,7 @@ export function RKGTime(data: Uint8Array | number) {
 }
 
 export function RKGTimeStructType() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return RKGTime(s.read_bytes(3));
     });
 }

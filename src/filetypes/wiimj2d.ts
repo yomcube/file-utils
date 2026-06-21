@@ -15,60 +15,60 @@ export const HINT_MOVIE_COUNT = 7;
 export const PLAYERS_str_a: string[] = [ "Mario", "Luigi", "Yellow Toad", "Blue Toad" ];
 
 export function dMj2dHeader_c() {
-    return ((s) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            mMagic: Types.u32()(s),
-            mRevision: Types.u16()(s),
-            mLastSelectedFile: Types.u8()(s),
-            mUnknown7: Types.u8()(s),
+            mMagic: Types.u32()(s, ctx),
+            mRevision: Types.u16()(s, ctx),
+            mLastSelectedFile: Types.u8()(s, ctx),
+            mUnknown7: Types.u8()(s, ctx),
             mPlayCountFreeMode: Types.array(
                 Types.array(Types.u16(), WORLD_COUNT),
                 STAGE_COUNT
-            )(s),
+            )(s, ctx),
             mPlayCountCoinBattle: Types.array(
                 Types.array(Types.u16(), WORLD_COUNT),
                 STAGE_COUNT
-            )(s),
-            mMultiWorldOpenFlag: Types.u16()(s),
-            mUnknown69A: Types.u16()(s),
-            mChecksum: Types.u32()(s)
+            )(s, ctx),
+            mMultiWorldOpenFlag: Types.u16()(s, ctx),
+            mUnknown69A: Types.u16()(s, ctx),
+            mChecksum: Types.u32()(s, ctx)
         };
     });
 }
 export function dMj2dGame_c() {
-    return ((s) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            mRevision: Types.u16()(s),
-            mGameCompletion: Types.u8()(s),
-            mCurrentWorld: Types.u8()(s),
-            mCurrentSubWorld: Types.u8()(s),
-            mCurrentPathNode: Types.u8()(s),
-            mIbaraNow: Types.u8()(s),
-            mSwitchOn: Types.u8()(s),
-            mUnknown8: Types.u8()(s),
-            mStockItemCount: Types.array(Types.u8(), POWERUP_COUNT)(s),
-            mStartKinokoType: Types.array(Types.u8(), WORLD_COUNT)(s),
-            mPlayerContinue: Types.array(Types.u8(), PLAYER_COUNT)(s),
-            mPlayerCoin: Types.array(Types.s8(), PLAYER_COUNT)(s),
-            mPlayerLife: Types.array(Types.u8(), PLAYER_COUNT)(s),
-            mPlayerCreateItem: Types.array(Types.u8(), PLAYER_COUNT)(s),
-            mPlayerCharacter: Types.array(Types.u8(), PLAYER_COUNT)(s),
-            mPlayerPowerup: Types.array(Types.u8(), PLAYER_COUNT)(s),
-            mWorldCompletion: Types.array(Types.u8(), WORLD_COUNT)(s),
-            mEnemyRevivalCount: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s),
-            mUnknown64: Types.u16()(s),
-            mStaffRollHighScore: Types.u16()(s),
-            mScore: Types.u32()(s),
-            mStageCompletion: Types.array(Types.array(Types.u32(), WORLD_COUNT), STAGE_COUNT)(s),
-            mOtehonMenuOpen: Types.array(Types.bool(), HINT_MOVIE_COUNT)(s),
-            mKinopioCourseNo: Types.array(Types.u8(), WORLD_COUNT)(s),
-            mEnemySceneNo: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s),
-            mEnemyPosIndex: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s),
-            mEnemyWalkDir: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s),
-            mDeathCount: Types.array(Types.array(Types.u8(), WORLD_COUNT), STAGE_COUNT)(s),
-            mDeathCountSwitch: Types.u8()(s),
-            pad: Types.byteArray(0x13)(s),
-            mChecksum: Types.u32()(s)
+            mRevision: Types.u16()(s, ctx),
+            mGameCompletion: Types.u8()(s, ctx),
+            mCurrentWorld: Types.u8()(s, ctx),
+            mCurrentSubWorld: Types.u8()(s, ctx),
+            mCurrentPathNode: Types.u8()(s, ctx),
+            mIbaraNow: Types.u8()(s, ctx),
+            mSwitchOn: Types.u8()(s, ctx),
+            mUnknown8: Types.u8()(s, ctx),
+            mStockItemCount: Types.array(Types.u8(), POWERUP_COUNT)(s, ctx),
+            mStartKinokoType: Types.array(Types.u8(), WORLD_COUNT)(s, ctx),
+            mPlayerContinue: Types.array(Types.u8(), PLAYER_COUNT)(s, ctx),
+            mPlayerCoin: Types.array(Types.s8(), PLAYER_COUNT)(s, ctx),
+            mPlayerLife: Types.array(Types.u8(), PLAYER_COUNT)(s, ctx),
+            mPlayerCreateItem: Types.array(Types.u8(), PLAYER_COUNT)(s, ctx),
+            mPlayerCharacter: Types.array(Types.u8(), PLAYER_COUNT)(s, ctx),
+            mPlayerPowerup: Types.array(Types.u8(), PLAYER_COUNT)(s, ctx),
+            mWorldCompletion: Types.array(Types.u8(), WORLD_COUNT)(s, ctx),
+            mEnemyRevivalCount: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s, ctx),
+            mUnknown64: Types.u16()(s, ctx),
+            mStaffRollHighScore: Types.u16()(s, ctx),
+            mScore: Types.u32()(s, ctx),
+            mStageCompletion: Types.array(Types.array(Types.u32(), WORLD_COUNT), STAGE_COUNT)(s, ctx),
+            mOtehonMenuOpen: Types.array(Types.bool(), HINT_MOVIE_COUNT)(s, ctx),
+            mKinopioCourseNo: Types.array(Types.u8(), WORLD_COUNT)(s, ctx),
+            mEnemySceneNo: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s, ctx),
+            mEnemyPosIndex: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s, ctx),
+            mEnemyWalkDir: Types.array(Types.array(Types.u8(), WORLD_COUNT), AMBUSH_ENEMY_COUNT)(s, ctx),
+            mDeathCount: Types.array(Types.array(Types.u8(), WORLD_COUNT), STAGE_COUNT)(s, ctx),
+            mDeathCountSwitch: Types.u8()(s, ctx),
+            pad: Types.byteArray(0x13)(s, ctx),
+            mChecksum: Types.u32()(s, ctx)
         };
     });
 }

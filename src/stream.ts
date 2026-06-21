@@ -38,7 +38,9 @@ export class Stream {
 		return this.idx += n;
 	}
 	jump(n: number): number {
-		this.#checkSize(n);
+		if (n < 0 || n >= this.length) {
+			throw new RangeError(`Jump out of bounds.\nn = ${n}; length = ${this.length}`);
+		}
 		return this.idx = n;
 	}
 	get index(): number {
@@ -111,6 +113,15 @@ export class Stream {
 		let tmp = this.bytes.slice(this.idx, this.idx + length);
 		this.idx += length;
 		return new TextDecoder().decode(tmp);
+	}
+	read_string_nt(): string {
+		let tmp = [];
+		while (true) {
+			let val = this.read_u8();
+			if (val == 0) break;
+			tmp.push(val);
+		}
+		return new TextDecoder().decode(new Uint8Array(tmp));
 	}
 	read_bytes(length: number): Uint8Array {
 		this.#checkSize(length);

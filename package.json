@@ -4,6 +4,6 @@
         "typescript": "^5.8.3"
     },
     "scripts": {
-        "build": "del /Q out\\* && tsc && xcopy /Y /E built out && xcopy /Y /E static out"
+        "build": "tsc && del /Q out\\* && xcopy /Y /E built out && xcopy /Y /E static out"
     }
 }

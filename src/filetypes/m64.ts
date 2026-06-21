@@ -5,7 +5,7 @@ import { Stream, Endian } from "../stream.js";
 import { Structure, Types } from "../structure.js";
 
 export function ExtData() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
             specialAuthor: s.read_u32(),
             bruteforcing: s.read_u32(),

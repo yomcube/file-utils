@@ -7,7 +7,7 @@ const utf8decoder = new TextDecoder();
 
 export class M64Handler implements IFileHandler {
     displayName: string = "M64";
-    file: M64File;
+    file: M64File = {} as M64File;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new M64File( new Uint8Array(buffer) );
@@ -16,6 +16,8 @@ export class M64Handler implements IFileHandler {
     }
     
     createTable() {
+        if (content == null) return;
+        
         const p: Record<string, any> = this.file.parsed;
         
         if (p.signature != 0x1A34364D) {

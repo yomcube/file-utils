@@ -6,7 +6,7 @@ const content = document.getElementById("content");
 
 export class DTMHandler implements IFileHandler {
     displayName: string = "DTM";
-    file: DTMFile;
+    file: DTMFile = {} as DTMFile;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new DTMFile( new Uint8Array(buffer) );
@@ -15,6 +15,8 @@ export class DTMHandler implements IFileHandler {
     }
 
     createTable() {
+        if (content == null) return;
+        
         const p: Record<string, any> = this.file.parsed;
         
         if (p.filetype != 0x1A4D5444) {

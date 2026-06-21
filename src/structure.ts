@@ -11,7 +11,7 @@ export class Structure {
     parse(stream: Stream): Record<string, any> {
         var dst: Record<string, any> = {};
         for (var [key, value] of Object.entries(this.struct)) {
-            dst[key] = value(stream);
+            dst[key] = value(stream, dst);
         }
         return dst;
     }

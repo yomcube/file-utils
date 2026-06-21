@@ -2,7 +2,7 @@ import { addFileHandler, execHandler, handlers } from "./handler.js";
 
 const fileType = document.getElementById("fileType") as HTMLSelectElement;
 
-document.getElementById("fileInput").addEventListener("change", () => {
+(document.getElementById("fileInput") as HTMLInputElement).addEventListener("change", () => {
     execHandler(fileType.value);
 }, false);
 
@@ -25,7 +25,13 @@ addFileHandler(new RksysHandler());*/
 import { KRKGHandler } from "./handlers/kinoko.js";
 addFileHandler(new KRKGHandler());
 
+import { RELHandler } from "./handlers/rel.js";
+addFileHandler(new RELHandler());
+
+import { RSOHandler } from "./handlers/rso.js";
+addFileHandler(new RSOHandler());
+
 var params = (new URL(document.location.toString())).searchParams;
 if (params.has("f")) {
-    fileType.value = params.get("f");
+    fileType.value = params.get("f") ?? "";
 }

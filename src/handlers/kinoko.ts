@@ -16,7 +16,7 @@ function Quatf_read(s: Stream): Quatf {
 
 export class KRKGHandler implements IFileHandler {
     displayName: string = "Kinoko KRKG";
-    file: KRKGFile;
+    file: KRKGFile = {} as KRKGFile;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new KRKGFile( new Uint8Array(buffer) );
@@ -25,6 +25,8 @@ export class KRKGHandler implements IFileHandler {
     }
     
     createTable() {
+        if (content == null) return;
+        
         const p: Record<string, any> = this.file.parsed;
         
         if (p.signature != 0x4b524b47) {
@@ -89,7 +91,7 @@ export class KRKGHandler implements IFileHandler {
 
         content.appendChild(table.element);
 
-        document.getElementById("frameInput").addEventListener("input", (ev) => {
+        frameInput.addEventListener("input", (ev) => {
             console.log("input");
             this.createFrameTable((ev.target as HTMLInputElement).value, framedata, document.getElementById("frameTable") as HTMLTableElement);
         }, true);

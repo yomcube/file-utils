@@ -6,222 +6,222 @@ import { Structure, Types } from "../structure.js";
 import { RKGTimeStructType } from "./rkg.js";
 
 export function RKPD() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            signature: Types.u32()(s),
-            personalBestFlags: Types.u32()(s),
-            downloadedGhostFlags: Types.u32()(s),
-            normalStaffGhostFlags: Types.u32()(s),
-            expertStaffGhostFlags: Types.u32()(s),
-            miiName: Types.byteArray(20)(s),
-            miiAvatarId: Types.u32()(s),
-            miiClientId: Types.u32()(s),
-            completionFlagsA: Types.u32()(s),
-            completionFlagsB: Types.u32()(s),
-            unknown0: Types.byteArray(8)(s),
-            dwcSize: Types.u32()(s),
-            dwcPseudoUserId: Types.array(Types.u32(), 2)(s),
-            dwcPseudoPlayerId: Types.u32()(s),
-            dwcAuthenticUserId: Types.array(Types.u32(), 2)(s),
-            dwcAuthenticPlayerId: Types.u32()(s),
-            dwcPlayerProfileId: Types.u32()(s),
-            dwcUnknownFlags: Types.u32()(s),
-            dwcGameId: Types.str(4)(s),
-            dwcUnknown0: Types.byteArray(20)(s),
-            dwcCRC: Types.u32()(s),
-            rulesSingleplayer: Types.u32()(s),
-            rulesMultiplayer: Types.u32()(s),
-            offlineWinsVS: Types.s32()(s),
-            offlineLossesVS: Types.s32()(s),
-            offlineWinsBattle: Types.s32()(s),
-            offlineLossesBattle: Types.s32()(s),
-            wfcWinsVS: Types.s32()(s),
-            wfcLossesVS: Types.s32()(s),
-            wfcWinsBattle: Types.s32()(s),
-            wfcLossesBattle: Types.s32()(s),
-            ghostBattleWins: Types.s32()(s),
-            ghostBattleLosses: Types.s32()(s),
-            raceRating: Types.u16()(s),
-            battleRating: Types.u16()(s),
-            totalRaceCount: Types.s32()(s),
-            totalBattleCount: Types.s32()(s),
-            racesWithWheel: Types.s32()(s),
-            battlesWithWheel: Types.s32()(s),
-            distanceTravelled: Types.f32()(s),
-            ghostChallengesSent: Types.s32()(s),
-            ghostChallengesReceived: Types.s32()(s),
-            itemHitsDelivered: Types.s32()(s),
-            itemHitsReceived: Types.s32()(s),
-            tricksPerformed: Types.s32()(s),
-            timesFirstPlace: Types.s32()(s),
-            distanceTravelledInFirst: Types.s32()(s),
-            distanceTravelledOnVS: Types.s32()(s),
-            competitionsEntered: Types.u16()(s),
-            defaultDrift: Types.u8()(s),
-            unknown1: Types.u8()(s),
+            signature: Types.u32()(s, ctx),
+            personalBestFlags: Types.u32()(s, ctx),
+            downloadedGhostFlags: Types.u32()(s, ctx),
+            normalStaffGhostFlags: Types.u32()(s, ctx),
+            expertStaffGhostFlags: Types.u32()(s, ctx),
+            miiName: Types.byteArray(20)(s, ctx),
+            miiAvatarId: Types.u32()(s, ctx),
+            miiClientId: Types.u32()(s, ctx),
+            completionFlagsA: Types.u32()(s, ctx),
+            completionFlagsB: Types.u32()(s, ctx),
+            unknown0: Types.byteArray(8)(s, ctx),
+            dwcSize: Types.u32()(s, ctx),
+            dwcPseudoUserId: Types.array(Types.u32(), 2)(s, ctx),
+            dwcPseudoPlayerId: Types.u32()(s, ctx),
+            dwcAuthenticUserId: Types.array(Types.u32(), 2)(s, ctx),
+            dwcAuthenticPlayerId: Types.u32()(s, ctx),
+            dwcPlayerProfileId: Types.u32()(s, ctx),
+            dwcUnknownFlags: Types.u32()(s, ctx),
+            dwcGameId: Types.str(4)(s, ctx),
+            dwcUnknown0: Types.byteArray(20)(s, ctx),
+            dwcCRC: Types.u32()(s, ctx),
+            rulesSingleplayer: Types.u32()(s, ctx),
+            rulesMultiplayer: Types.u32()(s, ctx),
+            offlineWinsVS: Types.s32()(s, ctx),
+            offlineLossesVS: Types.s32()(s, ctx),
+            offlineWinsBattle: Types.s32()(s, ctx),
+            offlineLossesBattle: Types.s32()(s, ctx),
+            wfcWinsVS: Types.s32()(s, ctx),
+            wfcLossesVS: Types.s32()(s, ctx),
+            wfcWinsBattle: Types.s32()(s, ctx),
+            wfcLossesBattle: Types.s32()(s, ctx),
+            ghostBattleWins: Types.s32()(s, ctx),
+            ghostBattleLosses: Types.s32()(s, ctx),
+            raceRating: Types.u16()(s, ctx),
+            battleRating: Types.u16()(s, ctx),
+            totalRaceCount: Types.s32()(s, ctx),
+            totalBattleCount: Types.s32()(s, ctx),
+            racesWithWheel: Types.s32()(s, ctx),
+            battlesWithWheel: Types.s32()(s, ctx),
+            distanceTravelled: Types.f32()(s, ctx),
+            ghostChallengesSent: Types.s32()(s, ctx),
+            ghostChallengesReceived: Types.s32()(s, ctx),
+            itemHitsDelivered: Types.s32()(s, ctx),
+            itemHitsReceived: Types.s32()(s, ctx),
+            tricksPerformed: Types.s32()(s, ctx),
+            timesFirstPlace: Types.s32()(s, ctx),
+            distanceTravelledInFirst: Types.s32()(s, ctx),
+            distanceTravelledOnVS: Types.s32()(s, ctx),
+            competitionsEntered: Types.u16()(s, ctx),
+            defaultDrift: Types.u8()(s, ctx),
+            unknown1: Types.u8()(s, ctx),
             
-            racesCompletedCharArray: Types.array(Types.u16(), 25)(s),
-            racesCompletedVehicleArray: Types.array(Types.u16(), 36)(s),
-            racesCompletedCourseArray: Types.array(Types.u16(), 32)(s),
-            racesCompletedArenaArray: Types.array(Types.u16(), 10)(s),
+            racesCompletedCharArray: Types.array(Types.u16(), 25)(s, ctx),
+            racesCompletedVehicleArray: Types.array(Types.u16(), 36)(s, ctx),
+            racesCompletedCourseArray: Types.array(Types.u16(), 32)(s, ctx),
+            racesCompletedArenaArray: Types.array(Types.u16(), 10)(s, ctx),
             
-            padding0: Types.byteArray(6)(s),
-            cupData50cc: Types.array(RKPDCup(), 8)(s),
-            cupData100cc: Types.array(RKPDCup(), 8)(s),
-            cupData150cc: Types.array(RKPDCup(), 8)(s),
-            cupDataMirror: Types.array(RKPDCup(), 8)(s),
+            padding0: Types.byteArray(6)(s, ctx),
+            cupData50cc: Types.array(RKPDCup(), 8)(s, ctx),
+            cupData100cc: Types.array(RKPDCup(), 8)(s, ctx),
+            cupData150cc: Types.array(RKPDCup(), 8)(s, ctx),
+            cupDataMirror: Types.array(RKPDCup(), 8)(s, ctx),
 
-            timeTrialLeaderboardRanks: Types.array(RKPDTimeTrialLeaderboardEntry(), 5)(s),
-            timeTrialLeaderboardFlap: RKPDTimeTrialLeaderboardEntry()(s),
-            competitionLeaderboard: Types.array(RKPDCompetitionLeaderboardEntry(), 6)(s),
+            timeTrialLeaderboardRanks: Types.array(RKPDTimeTrialLeaderboardEntry(), 5)(s, ctx),
+            timeTrialLeaderboardFlap: RKPDTimeTrialLeaderboardEntry()(s, ctx),
+            competitionLeaderboard: Types.array(RKPDCompetitionLeaderboardEntry(), 6)(s, ctx),
 
-            friendDataMain: Types.array(RKPDFriendBlockMain(), 30)(s),
-            friendDataSecondary: Types.array(RKPDFriendBlockSecondary(), 30)(s),
+            friendDataMain: Types.array(RKPDFriendBlockMain(), 30)(s, ctx),
+            friendDataSecondary: Types.array(RKPDFriendBlockSecondary(), 30)(s, ctx),
         }
     });
 }
 export function RKPDCup() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            unknownStringData: Types.byteArray(0x4C)(s),
-            unknown0: Types.byteArray(3)(s),
-            trophy: Types.u8()(s),
-            unknown1: Types.u8()(s),
-            rank: Types.u8()(s),
-            completed: Types.bool()(s),
-            unknown2: Types.byteArray(0xD)(s)
+            unknownStringData: Types.byteArray(0x4C)(s, ctx),
+            unknown0: Types.byteArray(3)(s, ctx),
+            trophy: Types.u8()(s, ctx),
+            unknown1: Types.u8()(s, ctx),
+            rank: Types.u8()(s, ctx),
+            completed: Types.bool()(s, ctx),
+            unknown2: Types.byteArray(0xD)(s, ctx)
         };
     });
 }
 export function RKPDTimeTrialLeaderboardEntry() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            mii: Types.byteArray(0x4A)(s),
-            miiCRC: Types.u16()(s),
-            time: RKGTimeStructType()(s),
-            vehicle: Types.u8()(s),
-            characterAndEnabled: Types.u8()(s),
-            controller: Types.u8()(s),
-            unknown0: Types.byteArray(14)(s),
+            mii: Types.byteArray(0x4A)(s, ctx),
+            miiCRC: Types.u16()(s, ctx),
+            time: RKGTimeStructType()(s, ctx),
+            vehicle: Types.u8()(s, ctx),
+            characterAndEnabled: Types.u8()(s, ctx),
+            controller: Types.u8()(s, ctx),
+            unknown0: Types.byteArray(14)(s, ctx),
         };
     });
 }
 export function RKPDCompetitionLeaderboardEntry() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            time: RKGTimeStructType()(s),
-            vehicle: Types.u8()(s),
-            characterAndValid: Types.u8()(s),
-            controller: Types.u8()(s),
-            unknown0: Types.u16()(s)
+            time: RKGTimeStructType()(s, ctx),
+            vehicle: Types.u8()(s, ctx),
+            characterAndValid: Types.u8()(s, ctx),
+            controller: Types.u8()(s, ctx),
+            unknown0: Types.u16()(s, ctx)
         };
     });
 }
 export function RKPDFriendBlockMain() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            unknown0: Types.u32()(s),
-            pid: Types.u32()(s),
-            unknown1: Types.u32()(s),
-            unknown2: Types.u32()(s),
-            unknown3: Types.u16()(s),
-            losses: Types.u16()(s),
-            wins: Types.u16()(s),
-            raceRating: Types.u16()(s),
-            battleRating: Types.u16()(s),
-            miiData: Types.byteArray(0x4A)(s),
-            unknown4: Types.u32()(s),
-            countryId: Types.u8()(s),
-            regionId: Types.u8()(s),
-            unknown5: Types.u16()(s),
-            coordinates: Types.array(Types.u16(), 2)(s),
-            unknown6: Types.byteArray(0x150)(s)
+            unknown0: Types.u32()(s, ctx),
+            pid: Types.u32()(s, ctx),
+            unknown1: Types.u32()(s, ctx),
+            unknown2: Types.u32()(s, ctx),
+            unknown3: Types.u16()(s, ctx),
+            losses: Types.u16()(s, ctx),
+            wins: Types.u16()(s, ctx),
+            raceRating: Types.u16()(s, ctx),
+            battleRating: Types.u16()(s, ctx),
+            miiData: Types.byteArray(0x4A)(s, ctx),
+            unknown4: Types.u32()(s, ctx),
+            countryId: Types.u8()(s, ctx),
+            regionId: Types.u8()(s, ctx),
+            unknown5: Types.u16()(s, ctx),
+            coordinates: Types.array(Types.u16(), 2)(s, ctx),
+            unknown6: Types.byteArray(0x150)(s, ctx)
         };
     });
 }
 export function RKPDFriendBlockSecondary() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            unknown0: Types.u16()(s),
-            unknown1: Types.u8()(s),
-            unknown2: Types.u8()(s),
-            pid: Types.u32()(s),
-            unknown3: Types.u32()(s),
+            unknown0: Types.u16()(s, ctx),
+            unknown1: Types.u8()(s, ctx),
+            unknown2: Types.u8()(s, ctx),
+            pid: Types.u32()(s, ctx),
+            unknown3: Types.u32()(s, ctx),
         };
     });
 }
 
 export function RKGD() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            signature: Types.u32()(s),
-            settings: Types.u32()(s),
-            competitionInfoArray: Types.array(RKGDCompetitionInfo(), 10)(s),
-            rankingTimeTrialChampions: Types.array(RKGDTimeTrialChampions(), 32)(s),
-            rankingCompetitionChampions: RKGDCompetitionChampions()(s),
-            specialGhostIdList: Types.array(Types.u32(), 10)(s),
-            lastGhostRaceDate: Types.u16()(s),
-            regionId: Types.u16()(s)
+            signature: Types.u32()(s, ctx),
+            settings: Types.u32()(s, ctx),
+            competitionInfoArray: Types.array(RKGDCompetitionInfo(), 10)(s, ctx),
+            rankingTimeTrialChampions: Types.array(RKGDTimeTrialChampions(), 32)(s, ctx),
+            rankingCompetitionChampions: RKGDCompetitionChampions()(s, ctx),
+            specialGhostIdList: Types.array(Types.u32(), 10)(s, ctx),
+            lastGhostRaceDate: Types.u16()(s, ctx),
+            regionId: Types.u16()(s, ctx)
         };
     });
 }
 export function RKGDCompetitionInfo() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            id: Types.u32()(s),
-            worldwideRankings: RKGDCompetitionRankingData()(s),
-            regionalRankings: RKGDCompetitionRankingData()(s)
+            id: Types.u32()(s, ctx),
+            worldwideRankings: RKGDCompetitionRankingData()(s, ctx),
+            regionalRankings: RKGDCompetitionRankingData()(s, ctx)
         };
     });
 }
 export function RKGDCompetitionRankingData() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            miiMultiplier: Types.u32()(s),
-            rankTimeLimit: Types.u32()(s),
-            championTime: Types.u32()(s), // Probably RKGTime
-            miiData: Types.byteArray(0x4A)(s),
-            miiCRC: Types.u16()(s),
-            unknown0: Types.u8()(s),
-            character: Types.u8()(s),
-            vehicle: Types.u8()(s),
-            unknown1: Types.u8()(s),
-            unknown2: Types.byteArray(100)(s),
-            unknown3: Types.u32()(s),
-            unknown4: Types.byteArray(28)(s),
+            miiMultiplier: Types.u32()(s, ctx),
+            rankTimeLimit: Types.u32()(s, ctx),
+            championTime: Types.u32()(s, ctx), // Probably RKGTime
+            miiData: Types.byteArray(0x4A)(s, ctx),
+            miiCRC: Types.u16()(s, ctx),
+            unknown0: Types.u8()(s, ctx),
+            character: Types.u8()(s, ctx),
+            vehicle: Types.u8()(s, ctx),
+            unknown1: Types.u8()(s, ctx),
+            unknown2: Types.byteArray(100)(s, ctx),
+            unknown3: Types.u32()(s, ctx),
+            unknown4: Types.byteArray(28)(s, ctx),
         };
     });
 }
 export function RKGDTimeTrialChampions() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            regionalChampion: RKGDTimeTrialChampionsEntry()(s),
-            worldwideChampion: RKGDTimeTrialChampionsEntry()(s),
+            regionalChampion: RKGDTimeTrialChampionsEntry()(s, ctx),
+            worldwideChampion: RKGDTimeTrialChampionsEntry()(s, ctx),
         };
     });
 }
 export function RKGDTimeTrialChampionsEntry() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            finishTime: Types.u32()(s), // Probably RKGTime
-            miiDataWithChecksum: Types.byteArray(0x4C)(s)
+            finishTime: Types.u32()(s, ctx), // Probably RKGTime
+            miiDataWithChecksum: Types.byteArray(0x4C)(s, ctx)
         };
     });
 }
 export function RKGDCompetitionChampions() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            regionalChampion: RKGDCompetitionChampionsEntry()(s),
-            worldwideChampion: RKGDCompetitionChampionsEntry()(s),
+            regionalChampion: RKGDCompetitionChampionsEntry()(s, ctx),
+            worldwideChampion: RKGDCompetitionChampionsEntry()(s, ctx),
         };
     });
 }
 export function RKGDCompetitionChampionsEntry() {
-    return ((s: Stream) => {
+    return ((s: Stream, ctx: any) => {
         return {
-            finishTime: Types.u32()(s), // Probably RKGTime
-            unknown0: Types.u32()(s),
-            miiDataWithChecksum: Types.byteArray(0x4C)(s)
+            finishTime: Types.u32()(s, ctx), // Probably RKGTime
+            unknown0: Types.u32()(s, ctx),
+            miiDataWithChecksum: Types.byteArray(0x4C)(s, ctx)
         };
     });
 }

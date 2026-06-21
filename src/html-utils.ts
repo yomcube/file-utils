@@ -1,8 +1,10 @@
 export class Table {
     element: HTMLTableElement;
+    width: number = 2;
 
-    constructor(e?: HTMLTableElement) {
-        this.element = e == undefined ? document.createElement("table") : e;
+    constructor(e?: HTMLTableElement | null, width: number = 2) {
+        this.element = e ?? document.createElement("table");
+        this.width = width;
     }
 
     get style(): CSSStyleDeclaration {
@@ -12,23 +14,30 @@ export class Table {
         this.element.style = value;
     }
 
-    addRow(header: any, data: any): void {
+    #_addRow(header: any, dataIsHeader: boolean, ...data: any[]): void {
         var row = document.createElement("tr");
         var h = document.createElement("th");
-        var d = document.createElement("td");
         h.innerHTML = header;
-        d.innerHTML = data;
-        row.append(h, d);
+
+        row.appendChild(h);
+
+        for (let d of data) {
+            var td = document.createElement(dataIsHeader ? "th" : "td");
+            if (d instanceof HTMLElement) {
+                td.appendChild(d);
+            } else {
+                td.innerHTML = d;
+            }
+            row.appendChild(td);
+        }
+
         this.element.appendChild(row);
     }
-    addFullHeader(header: any): void {
-        var row = document.createElement("tr");
-        var h = document.createElement("th");
-        h.colSpan = 2;
-        h.innerHTML = header;
-        h.style.textAlign = "center";
-        row.appendChild(h);
-        this.element.appendChild(row);
+    addRow(header: any, ...data: any[]): void {
+        this.#_addRow(header, false, ...data);
+    }
+    addHeader(header: any, ...data: any[]): void {
+        this.#_addRow(header, true, ...data);
     }
     clear(): void {
         this.element.replaceChildren();
@@ -86,6 +95,48 @@ export class Tabs {
     }
 }
 
+export class Details {
+    trueElement: HTMLDetailsElement;
+    summaryElement: HTMLElement;
+    id?: string|null;
+    backToTopAnchor?: HTMLAnchorElement;
+
+    constructor(summary: string, id?: string|null, e?: HTMLDetailsElement) {
+        this.trueElement = e ?? document.createElement("details");
+        this.summaryElement = document.createElement("summary");
+        this.summaryElement.innerHTML = summary;
+        this.appendChild(this.summaryElement);
+        this.id = id;
+
+        if (id) {
+            this.trueElement.id = id;
+            this.backToTopAnchor = document.createElement("a");
+            this.backToTopAnchor.href = `#${id}`;
+            this.backToTopAnchor.innerText = "Back to top";
+        }
+    }
+    appendChild(node: Node) {
+        this.trueElement.appendChild(node);
+    }
+    get element(): HTMLDetailsElement {
+        if (this.backToTopAnchor) {
+            this.appendChild(this.backToTopAnchor);
+        }
+        return this.trueElement;
+    }
+}
+
+// https://stackoverflow.com/a/12034334
+var entityMap: any = {
+  '&': '&amp;',  '<': '&lt;',    '>': '&gt;',    '"': '&quot;',
+  "'": '&#39;',  '/': '&#x2F;',  '`': '&#x60;',  '=': '&#x3D;'
+};
+export function sanitize(str: string) {
+  return String(str).replace(/[&<>"'`=\/]/g, function (s) {
+    return entityMap[s];
+  });
+}
+
 export function yesno(b: boolean | number): string {
     return b ? "Yes" : "No";
 }
@@ -117,6 +168,6 @@ export function numToHex(num: number, targetLength: number, displayAsCode?: bool
     return str;
 }
 
-export function leftFillNum(num, targetLength) {
+export function leftFillNum(num: number, targetLength: number) {
 	return num.toString().padStart(targetLength, "0");
 }

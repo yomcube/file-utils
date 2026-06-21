@@ -8,7 +8,7 @@ const backgroundColors = [ "#FFD200", "#3C96F0", "#E61414", "#96CD01" ];
 
 export class RksysHandler implements IFileHandler {
     displayName: string = "rksys.dat";
-    file: RksysFile;
+    file: RksysFile = {} as RksysFile;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new RksysFile( new Uint8Array(buffer) );
@@ -17,6 +17,7 @@ export class RksysHandler implements IFileHandler {
     }
 
     createTable() {
+        if (content == null) return;
         const p: Record<string, any> = this.file.parsed;
         
         if (p.signature != 0x524B5344) {
@@ -25,7 +26,7 @@ export class RksysHandler implements IFileHandler {
         }
 
         let table = new Table();
-        table.addFullHeader("Global Data");
+        table.addHeader("Global Data");
 
         table.addRow("Settings", p.globalData.settings);
         table.addRow("Region ID", p.globalData.regionId);

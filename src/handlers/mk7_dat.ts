@@ -7,7 +7,7 @@ const content = document.getElementById("content");
 
 export class MK7_DATHandler implements IFileHandler {
     displayName: string = "MK7 DAT";
-    file: MK7_DATFile;
+    file: MK7_DATFile = {} as MK7_DATFile;
     handleFile(file: File): void {
         file.arrayBuffer().then((buffer) => {
             this.file = new MK7_DATFile( new Uint8Array(buffer) );
@@ -20,6 +20,8 @@ export class MK7_DATHandler implements IFileHandler {
     }
     
     createTable() {
+        if (content == null) return;
+        
         const p: Record<string, any> = this.file.parsed;
 
         if (p.signature != 0x43444744) {
