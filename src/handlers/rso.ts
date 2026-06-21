@@ -50,7 +50,9 @@ export class RSOHandler implements IFileHandler {
             return a.secIdx - b.secIdx || a.symOff - b.symOff;
         });
         for (let sym of d.expSyms) {
-            let sec = d.isSel ? sym.secIdx.toString() : d.sections[sym.secIdx].name;
+            let sec = d.isSel ? sym.secIdx.toString() :
+                sym.secIdx > d.sectionCount ? `.section${sym.secIdx}` :
+                d.sections[sym.secIdx].name;
             expTable.addRow(sec, numToHex(sym.symOff, 0, true), sanitize(sym.symbol));
         }
         let expDetails: Details = new Details("View exported symbols", "rso-exported-symbols");

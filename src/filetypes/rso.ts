@@ -115,7 +115,9 @@ export class RSOFile implements IFile {
         for (let sec of this.data.sections) {
             if (sec.offset == 0) {
                 if (sec.size == 0) {
-                    nullSections++; continue;
+                    nullSections++;
+                    sec.name = `.section${sec.idx}`;
+                    continue;
                 }
                 this.setSec(sec, ".bss");
             }
